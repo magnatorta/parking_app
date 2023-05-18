@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_083416) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_18_113945) do
+  create_table "payments", force: :cascade do |t|
+    t.integer "method"
+    t.integer "ticket_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_payments_on_ticket_id"
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.string "code", limit: 16
     t.datetime "created_at", null: false
@@ -18,4 +26,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_083416) do
     t.float "price"
   end
 
+  add_foreign_key "payments", "tickets"
 end

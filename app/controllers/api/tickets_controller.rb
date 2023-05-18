@@ -16,6 +16,8 @@ class Api::TicketsController < ApplicationController
 
   # GET api/tickets/0000000000000001
   def show
+    #set price
+    render json: Ticket.find_by(code: params[:code])
   end
 
   private

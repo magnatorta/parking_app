@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   namespace :api do
-    resources :tickets, only: [:create]
+    resources :tickets, param: :code, only: [:create, :show]
   end
 end

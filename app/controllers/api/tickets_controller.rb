@@ -14,6 +14,10 @@ class Api::TicketsController < ApplicationController
     end
   end
 
+  # GET api/tickets/0000000000000001
+  def show
+  end
+
   private
   #hexadecimal code of the next id
   def setCode

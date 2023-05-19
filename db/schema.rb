@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_113945) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_083331) do
   create_table "payments", force: :cascade do |t|
     t.integer "method"
     t.integer "ticket_id", null: false
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_113945) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "price"
+    t.boolean "paid", default: false, null: false
   end
 
   add_foreign_key "payments", "tickets"

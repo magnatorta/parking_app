@@ -6,11 +6,10 @@ class Api::PaymentsController < ApplicationController
     #TODO test method enums
     payment = Payment.new(method: params[:method], ticket_id: params[:ticket_code])
     if payment.save
+      #payment.ticket.update_attribute(:paid, true)
       render json: payment, only: [:id, :method, :created_at], status: :created
     else
       render json: payment.errors, status: :unprocessable_entity
     end
-
-    #TODO mark the ticket as paid
   end
 end

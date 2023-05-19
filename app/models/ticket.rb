@@ -1,5 +1,5 @@
 class Ticket < ApplicationRecord
-
+	
 	#validating presence
 	validates :code, presence: true, uniqueness: true
 

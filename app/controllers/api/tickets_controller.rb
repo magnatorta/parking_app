@@ -28,7 +28,12 @@ class Api::TicketsController < ApplicationController
    #GET api/tickets/0000000000000001/state
   def state
     ticket = Ticket.find_by(code: params[:ticket_code])
-    render json: ticket, only: :paid
+    #TODO add status
+    if ticket.paid && (ticket.created_at < 15.minutes.ago)
+      render json: ticket, only: :paid
+    else
+      ticket.update(paid: false)
+    end
   end
 
   private

@@ -1,5 +1,6 @@
 class Api::TicketsController < ApplicationController
   HOURLY_RATE = 2
+  MIN_RATE = 2
 
   before_action :set_ticket, only: %i[show]
 
@@ -45,7 +46,7 @@ class Api::TicketsController < ApplicationController
   #calculate ticket price
   def set_price
     total_hours = (Time.zone.now - @ticket.created_at)/3600
-    total_price = (total_hours.to_i * HOURLY_RATE)
+    total_price = total_hours.to_i == 0 ? MIN_RATE : total_hours.to_i * HOURLY_RATE
     @ticket.update(price: total_price)
   end
 end

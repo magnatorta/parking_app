@@ -24,6 +24,12 @@ class Api::TicketsController < ApplicationController
     render json: @ticket , only: [:id, :code, :created_at, :price], status: :ok
   end
 
+   #GET api/tickets/0000000000000001/state
+  def state
+    ticket = Ticket.find_by(code: params[:ticket_code])
+    render json: ticket, only: :paid
+  end
+
   private
 
   def set_ticket

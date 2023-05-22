@@ -32,10 +32,14 @@ class Api::TicketsController < ApplicationController
   def state
     ticket = Ticket.find_by(code: params[:ticket_code])
 
-    unless ticket.paid && (ticket.updated_at >= 15.minutes.ago)
-      ticket.update(paid: false)
+    if ticket.nil?
+      render status: :not_found
+    else
+      unless ticket.paid && (ticket.updated_at >= 15.minutes.ago)
+        ticket.update(paid: false)
+      end
+      render json: ticket, only: :paid, status: :ok
     end
-    render json: ticket, only: :paid, status: :ok
   end
 
   private

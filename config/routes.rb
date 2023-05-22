@@ -4,5 +4,7 @@ Rails.application.routes.draw do
       resources :payments, only: :create
       get 'state'
     end
+
+    resources :free_spaces, path: 'free-spaces', only: :index
   end
 end

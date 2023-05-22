@@ -24,6 +24,7 @@ class Api::TicketsController < ApplicationController
     if @ticket.nil?
       render status: :not_found
     else
+      set_price
       render json: @ticket , only: [:id, :code, :created_at, :price], status: :ok
     end
   end

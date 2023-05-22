@@ -21,8 +21,11 @@ class Api::TicketsController < ApplicationController
 
   # GET api/tickets/0000000000000001
   def show
-    set_price
-    render json: @ticket , only: [:id, :code, :created_at, :price], status: :ok
+    if @ticket.nil?
+      render status: :not_found
+    else
+      render json: @ticket , only: [:id, :code, :created_at, :price], status: :ok
+    end
   end
 
    #GET api/tickets/0000000000000001/state
